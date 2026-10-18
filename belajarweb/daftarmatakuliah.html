@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Matakuliah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h2 {
+            font-family: "Times New Roman", Times, serif;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        th {
+            background-color: red;
+        }
+        .baris-merah {
+            background-color: blueviolet;
+            color: #333; 
+        }
+        .baris-hijau {
+            background-color: yellow;
+        }
+        .baris-oranye {
+            background-color: green;
+        }
+        .baris-kuning {
+            background-color: blue;
+        }
+        .footer-text {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>DAFTAR MATAKULIAH</h2>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">NO.</th>
+                <th rowspan="2">HARI</th>
+                <th rowspan="2">JAM</th>
+                <th rowspan="2"><i>MATAKULIAH</i></th>
+                <th colspan="3">NILAI</th>
+            </tr>
+            <tr>
+                <th>TUGAS</th>
+                <th>UTS</th>
+                <th>UAS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Baris 1: Senin -->
+            <tr class="baris-red">
+                <td>1</td>
+                <td>SENIN</td>
+                <td>07.00 - 08.30</td>
+                <td>Aplikasi IT-1</td>
+                <td>70</td>
+                <td>75</td>
+                <td>80</td>
+            </tr>
+            <!-- Baris 2: Selasa -->
+            <tr class="baris-blueviolet">
+                <td>2</td>
+                <td>SELASA</td>
+                <td>10.00 - 11.30</td>
+                <td>Pemrograman Pascal</td>
+                <td>70</td>
+                <td>85</td>
+                <td>80</td>
+            </tr>
+            <!-- Baris 3: Rabu (Bagian 1) menggunakan rowspan -->
+            <tr class="baris-yellow">
+                <td rowspan="2">3</td>
+                <td rowspan="2">RABU</td>
+                <td>10.00 - 11.30</td>
+                <td>Algoritma</td>
+                <td>75</td>
+                <td>90</td>
+                <td>80</td>
+            </tr>
+            <!-- Baris 4: Rabu (Bagian 2) -->
+            <tr class="baris-green">
+                <td>12.00 - 13.30</td>
+                <td>Matematika</td>
+                <td>85</td>
+                <td>75</td>
+                <td>90</td>
+            </tr>
+            <!-- Baris 5: Kamis -->
+            <tr class="baris-blue">
+                <td>5</td>
+                <td>KAMIS</td>
+                <td>07.00 - 08.30</td>
+                <td>Bahasa Indonesia</td>
+                <td>70</td>
+                <td>80</td>
+                <td>90</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer-text">
+        Dibuat Oleh: Tarischa Nur Wijayanti 10 RPL A
+    </div>
+</div>
+</body>
+</html>

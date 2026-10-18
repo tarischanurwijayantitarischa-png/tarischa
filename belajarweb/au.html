@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Audit Sampah Web + Foto</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #eef5fc;
+            color: #1e3a8a;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #1d4ed8;
+            color: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.08);
+            border: 1px solid #bfdbfe;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            color: #1e40af;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1e3a8a;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #93c5fd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Styling Input File */
+        .file-input-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .preview-form-container {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #93c5fd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f0f9ff;
+            margin-top: 5px;
+        }
+
+        #form-image-preview {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+
+        .btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .stats-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            background-color: #dbeafe;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .val {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        table th {
+            background-color: #eff6ff;
+            color: #1e40af;
+        }
+
+        /* Styling Foto di Tabel */
+        .table-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #bfdbfe;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Audit Sampah Digital + Foto</h1>
+        <p>Pencatatan dan Analisis Sampah Harian (Storage Terbatas)</p>
+    </header>
+
+    <div class="dashboard">
+        <!-- Form Input -->
+        <div class="card">
+            <h2>Tambah Data Audit</h2>
+            <form id="wasteForm">
+                <div class="form-group">
+                    <label for="wasteName">Nama Sampah</label>
+                    <input type="text" id="wasteName" placeholder="Contoh: Botol Plastik, Kulit Pisang" required>
+                </div>
+                
+                <!-- INPUT FOTO -->
+                <div class="form-group">
+                    <label>Foto Sampah</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="wastePhoto" accept="image/*" required>
+                    </div>
+                    <div class="preview-form-container">
+                        <span id="preview-placeholder" style="color: #93c5fd; font-size: 0.8rem;">Preview</span>
+                        <img id="form-image-preview" src="#" alt="Preview">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Kategori Sampah</label>
+                    <select id="category" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        <option value="Plastik keras (PET/HDPE)">Plastik keras (PET/HDPE)</option>
+                        <option value="Plastik lunak/Kemasan">Plastik lunak/Kemasan</option>
+                        <option value="Organik (Sisa Makanan)">Organik (Sisa Makanan)</option>
+                        <option value="Organik (Taman/Ranting)">Organik (Taman/Ranting)</option>
+                        <option value="Kertas & Karton">Kertas & Karton</option>
+                        <option value="Kaca & Botol">Kaca & Botol</option>
+                        <option value="Logam & Kaleng">Logam & Kaleng</option>
+                        <option value="B3 / Bahan Berbahaya">B3 / Bahan Berbahaya</option>
+                        <option value="Residu / Lainnya">Residu / Lainnya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Berat (Kg)</label>
+                    <input type="number" id="weight" step="0.1" min="0.1" placeholder="Contoh: 0.5" required>
+                </div>
+                <button type="submit" class="btn">Simpan Data</button>
+            </form>
+        </div>
+
+        <!-- Diagram / Chart -->
+        <div class="card">
+            <h2>Diagram Komposisi Sampah</h2>
+            <div class="stats-summary">
+                <div class="stat-item">
+                    <div class="lbl">Total Catatan</div>
+                    <div class="val" id="totalEntries">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="lbl">Total Berat</div>
+                    <div class="val" id="totalWeight">0 Kg</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="wasteChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabel Data Log -->
+    <div class="card">
+        <h2>Riwayat Audit Sampah</h2>
+        <div style="overflow-x: auto;">
+            <table id="wasteTable">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nama Sampah</th>
+                        <th>Kategori</th>
+                        <th>Berat (Kg)</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data dimasukkan lewat JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let wasteData = JSON.parse(localStorage.getItem('wasteData')) || [];
+    let myChart = null;
+    let currentBase64Image = null; // Menyimpan gambar yang dikompres sementara
+
+    const wasteForm = document.getElementById('wasteForm');
+    const tableBody = document.getElementById('tableBody');
+    const totalEntriesEl = document.getElementById('totalEntries');
+    const totalWeightEl = document.getElementById('totalWeight');
+    const photoInput = document.getElementById('wastePhoto');
+    const formImagePreview = document.getElementById('form-image-preview');
+    const previewPlaceholder = document.getElementById('preview-placeholder');
+
+    // DAFTAR KATEGORI
+    const categoriesList = [
+        'Plastik keras (PET/HDPE)', 'Plastik lunak/Kemasan',
+        'Organik (Sisa Makanan)', 'Organik (Taman/Ranting)',
+        'Kertas & Karton', 'Kaca & Botol',
+        'Logam & Kaleng', 'B3 / Bahan Berbahaya',
+        'Residu / Lainnya'
+    ];
+
+    // --- LOGIK INPUT FOTO DAN KOMPRESI ---
+    photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                // KOMPRESI GAMBAR (Penting untuk LocalStorage)
+                const canvas = document.createElement('canvas');
+                const MAX_WIDTH = 200; // Resize jadi kecil
+                const MAX_HEIGHT = 200;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width;
+                        width = MAX_WIDTH;
+                    }
+                } else {
+                    if (height > MAX_HEIGHT) {
+                        width *= MAX_HEIGHT / height;
+                        height = MAX_HEIGHT;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Convert ke Base64 dengan kualitas rendah (0.5)
+                currentBase64Image = canvas.toDataURL('image/jpeg', 0.5);
+                
+                // Tampilkan Preview di Form
+                formImagePreview.src = currentBase64Image;
+                formImagePreview.style.display = 'block';
+                previewPlaceholder.style.display = 'none';
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+
+
+    // --- LOGIK FORM SUBMIT ---
+    wasteForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!currentBase64Image) {
+            alert('Silakan upload foto terlebih dahulu.');
+            return;
+        }
+
+        const name = document.getElementById('wasteName').value;
+        const category = document.getElementById('category').value;
+        const weight = parseFloat(document.getElementById('weight').value);
+        const date = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+
+        const newEntry = {
+            id: Date.now(),
+            name,
+            category,
+            weight,
+            photo: currentBase64Image, // Menyimpan string gambar terkompres
+            date
+        };
+
+        try {
+            wasteData.push(newEntry);
+            localStorage.setItem('wasteData', JSON.stringify(wasteData));
+            saveAndRender();
+            resetForm();
+        } catch (error) {
+            // Jika LocalStorage penuh
+            alert('Gagal menyimpan. Memory browser penuh. Silakan hapus data lama.');
+            wasteData.pop(); // Hapus yang gagal ditambahkan
+        }
+    });
+
+    function resetForm() {
+        wasteForm.reset();
+        currentBase64Image = null;
+        formImagePreview.style.display = 'none';
+        formImagePreview.src = '#';
+        previewPlaceholder.style.display = 'block';
+    }
+
+    // --- LOGIK CORE APLIKASI ---
+    function deleteEntry(id) {
+        wasteData = wasteData.filter(item => item.id !== id);
+        localStorage.setItem('wasteData', JSON.stringify(wasteData));
+        saveAndRender();
+    }
+
+    function saveAndRender() {
+        renderTable();
+        renderChart();
+        updateSummary();
+    }
+
+    function renderTable() {
+        tableBody.innerHTML = '';
+        if (wasteData.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Belum ada data.</td></tr>';
+            return;
+        }
+
+        wasteData.slice().reverse().forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><img src="${item.photo}" class="table-img" alt="sampah"></td>
+                <td><strong>${item.name}</strong></td>
+                <td>${item.category}</td>
+                <td>${item.weight} kg</td>
+                <td>${item.date}</td>
+                <td><button class="btn-delete" onclick="deleteEntry(${item.id})">Hapus</button></td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function updateSummary() {
+        totalEntriesEl.textContent = wasteData.length;
+        const totalKg = wasteData.reduce((sum, item) => sum + item.weight, 0);
+        totalWeightEl.textContent = `${totalKg.toFixed(1)} Kg`;
+    }
+
+    function renderChart() {
+        const totals = categoriesList.map(cat => {
+            return wasteData
+                .filter(item => item.category === cat)
+                .reduce((sum, item) => sum + item.weight, 0);
+        });
+
+        const ctx = document.getElementById('wasteChart').getContext('2d');
+        if (myChart) myChart.destroy();
+
+        myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: categoriesList,
+                datasets: [{
+                    data: totals,
+                    backgroundColor: [
+                        '#2563eb', '#60a5fa', '#16a34a', '#4ade80',
+                        '#f59e0b', '#06b6d4', '#64748b', '#ef4444', '#94a3b8'
+                    ],
+                    borderWidth: 2, borderColor: '#ffffff'
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } } } }
+        });
+    }
+
+    saveAndRender();
+</script>
+
+</body>
+</html>

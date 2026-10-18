@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Web Grid 5</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: grid;
+            width: 100%;
+            max-width: 1000px;
+            border: 2px solid #ccc;
+            grid-template-columns: 30% 70%; 
+            grid-template-rows: auto 1fr auto; 
+            grid-template-areas: 
+                "sidebar-kiri header"
+                "sidebar-kiri konten-utama"
+                "sidebar-kiri footer";
+            min-height: 500px;
+        }
+        .box {
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            border: 1px solid #ffffff40; 
+        }
+        .sidebar-kiri {
+            grid-area: sidebar-kiri;
+            background-color: #add8e6; 
+            color: #000000;
+            font-style: italic;
+        }
+        .header {
+            grid-area: header;
+            background-color: #800080; 
+            min-height: 80px;
+        }
+        .konten-utama {
+            grid-area: konten-utama;
+            background-color: #008080; 
+            min-height: 300px;
+        }
+        .footer {
+            grid-area: footer;
+            background-color: #800080; 
+            min-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Kiri -->
+        <div class="box sidebar-kiri">
+            Daftar Isi<br>sidebar kiri
+        </div>
+
+        <!-- Header -->
+        <div class="box header">
+            Header (Banner/Judul)
+        </div>
+        <div class="box konten-utama">
+            Konten Utama/Isi
+        </div>
+        <div class="box footer">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Pelajaran SMK Negeri 4 Kota Malang</title>
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            background-color: #f8f9fa;
+            padding: 20px;
+            line-height: 1.4;
+        }
+
+        /* --- CONTAINER UTAMA --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- KOP SURAT / HEADER SEKOLAH --- */
+        .header-school {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px double #2c3e50;
+            padding-bottom: 12px;
+        }
+        .header-school h2 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2c3e50;
+            letter-spacing: 0.5px;
+        }
+        .header-school h1 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a252f;
+            margin: 4px 0;
+            letter-spacing: 1px;
+        }
+        .header-school p {
+            font-size: 11px;
+            color: #555555;
+        }
+
+        /* --- JUDUL JADWAL --- */
+        .title-schedule {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .title-schedule h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .title-schedule h4 {
+            font-size: 12px;
+            font-weight: 500;
+            color: #7f8c8d;
+            margin-top: 3px;
+        }
+
+        /* --- TABEL UTAMA --- */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table.schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            background-color: #ffffff;
+            font-size: 10.5px;
+        }
+        table.schedule-table th, 
+        table.schedule-table td {
+            border: 1px solid #dcdde1;
+            padding: 6px 4px;
+            vertical-align: middle;
+        }
+
+        /* Header Tabel */
+        table.schedule-table thead tr {
+            background-color: #2c3e50 !important;
+            color: #ffffff;
+        }
+        table.schedule-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-color: #34495e;
+        }
+
+        /* Kolom Khusus & Non-Pelajaran */
+        .bg-label {
+            background-color: #f1f2f6;
+            font-weight: 600;
+            color: #2f3640;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 4px 2px;
+        }
+        .bg-break {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+        .bg-apel {
+            background-color: #e74c3c !important;
+            color: #ffffff;
+        }
+
+        /* Hover Effect pada Baris */
+        table.schedule-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Style Teks untuk Mata Pelajaran, Guru, Ruang */
+        .subject {
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .teacher {
+            color: #334155;
+            font-weight: 600;
+        }
+        .room {
+            color: #64748b;
+            font-style: italic;
+            font-size: 9.5px;
+        }
+
+        /* --- STYLES UNTUK CETAK (PRINT) --- */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            table.schedule-table th, 
+            table.schedule-table td {
+                border: 1px solid #000000 !important;
+            }
+            table.schedule-table thead tr {
+                background-color: #e2e8f0 !important;
+                color: #000000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- KOP SURAT / HEADER SEKOLAH -->
+        <div class="header-school">
+            <h2>PEMERINTAH PROVINSI JAWA TIMUR</h2>
+            <h2>DINAS PENDIDIKAN</h2>
+            <h1>SMK NEGERI 4 KOTA MALANG</h1>
+            <p>Jalan Tanimbar No. 22, Kasin, Klojen, Malang, Jawa Timur 65117</p>
+        </div>
+
+        <!-- JUDUL JADWAL -->
+        <div class="title-schedule">
+            <h3>JADWAL PELAJARAN KONSENTRASI KEAHLIAN REKAYASA PERANGKAT LUNAK (RPL)</h3>
+            <h4>SEMESTER GANJIL TAHUN PELAJARAN 2026/2027</h4>
+        </div>
+
+        <!-- TABEL UTAMA -->
+        <div class="table-responsive">
+            <table class="schedule-table">
+                <thead>
+                    <!-- Baris 1: Header Hari Utama -->
+                    <tr>
+                        <th rowspan="2" style="width: 2%;">NO</th>
+                        <th rowspan="2" colspan="2" style="width: 8%;">TINGKAT</th>
+                        <th rowspan="2" style="width: 2%;">JAM 0</th>
+                        <th colspan="10">SENIN</th>
+                        <th rowspan="2" style="width: 1.5%;">MBG</th>
+                        <th colspan="12">SELASA</th>
+                        <th rowspan="2" style="width: 1.5%;">ISTIRAHAT</th>
+                        <th colspan="10">RABU</th>
+                        <th rowspan="2" style="width: 1.5%;">MBG</th>
+                        <th colspan="12">KAMIS</th>
+                        <th rowspan="2" style="width: 1.5%;">KEAGAMAAN</th>
+                        <th colspan="6">JUMAT</th>
+                    </tr>
+                    <!-- Baris 2: Nomor Jam Pelajaran -->
+                    <tr>
+                        <!-- Senin -->
+                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+                        <!-- Selasa -->
+                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
+                        <!-- Rabu -->
+                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+                        <!-- Kamis -->
+                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
+                        <!-- Jumat -->
+                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- BARIS DATA KELAS: X RPL A -->
+                    <tr>
+                        <td rowspan="3" class="bg-label">1</td>
+                        <td rowspan="3" class="bg-label"><b>X RPL A</b></td>
+                        <td class="bg-label">M.Diklat</td>
+                        <td rowspan="3" class="bg-apel vertical-text">Apel / Pembinaan</td>
+                        <!-- Senin -->
+                        <td colspan="2" bgcolor="#b4a7d6" class="subject">SEJ</td>
+                        <td colspan="4" bgcolor="#fff2cc" class="subject">BING</td>
+                        <td colspan="4" bgcolor="#f4cccc" class="subject">BIND</td>
+                        <!-- MBG -->
+                        <td rowspan="3" class="bg-break"></td>
+                        <!-- Selasa -->
+                        <td colspan="3" bgcolor="#b6d7a8" class="subject">INKA</td>
+                        <td colspan="2" bgcolor="#d9d2e9" class="subject">PP</td>
+                        <td colspan="7" bgcolor="#fff2cc" class="subject">IPAS</td>
+                        <!-- Istirahat -->
+                        <td rowspan="3" class="bg-break vertical-text">ISTIRAHAT / RELAXING</td>
+                        <!-- Rabu -->
+                        <td colspan="3" bgcolor="#ea9999" class="subject">MAT</td>
+                        <td colspan="3" bgcolor="#d0e0e3" class="subject">KKA</td>
+                        <td colspan="4" bgcolor="#fff2cc" class="subject">DDK</td>
+                        <!-- MBG -->
+                        <td rowspan="3" class="bg-break"></td>
+                        <!-- Kamis -->
+                        <td colspan="4" bgcolor="#e6b8af" class="subject">DDK</td>
+                        <td colspan="4" bgcolor="#f4cccc" class="subject">DDK</td>
+                        <td colspan="2" bgcolor="#c9daf8" class="subject">MULOK</td>
+                        <td colspan="2" bgcolor="#f9cb9c" class="subject">SENI</td>
+                        <!-- Keagamaan -->
+                        <td rowspan="3" class="bg-break vertical-text">KEAGAMAAN / MBG</td>
+                        <!-- Jumat -->
+                        <td colspan="3" bgcolor="#f4cccc" class="subject">PABP</td>
+                        <td colspan="3" bgcolor="#a2c4c9" class="subject">PJOK</td>
+                    </tr>
+                    <tr>
+                        <!-- Baris Guru X RPL A -->
+                        <td class="bg-label">Guru</td>
+                        <!-- Senin -->
+                        <td colspan="2" class="teacher">NOV</td><td colspan="4" class="teacher">SIN</td><td colspan="4" class="teacher">MIT</td>
+                        <!-- Selasa -->
+                        <td colspan="3" class="teacher">TYA</td><td colspan="2" class="teacher">JDA</td><td colspan="7" class="teacher">ALI</td>
+                        <!-- Rabu -->
+                        <td colspan="3" class="teacher">NKD</td><td colspan="3" class="teacher">ILA</td><td colspan="4" class="teacher">DIY/DAN</td>
+                        <!-- Kamis -->
+                        <td colspan="4" class="teacher">DAN</td><td colspan="4" class="teacher">MAH</td><td colspan="2" class="teacher">YGN</td><td colspan="2" class="teacher">BCA</td>
+                        <!-- Jumat -->
+                        <td colspan="3" class="teacher">IMA</td><td colspan="3" class="teacher">REJ</td>
+                    </tr>
+                    <tr>
+                        <!-- Baris Ruang X RPL A -->
+                        <td class="bg-label">Ruang</td>
+                        <!-- Senin -->
+                        <td colspan="2" class="room"></td><td colspan="4" class="room">R. 24</td><td colspan="4" class="room"></td>
+                        <!-- Selasa -->
+                        <td colspan="3" class="room">Lab. IR</td><td colspan="2" class="room"></td><td colspan="7" class="room">Lab. RPL 4 / R. 24</td>
+                        <!-- Rabu -->
+                        <td colspan="3" class="room"></td><td colspan="3" class="room">Lab. RPL 3</td><td colspan="4" class="room"></td>
+                        <!-- Kamis -->
+                        <td colspan="4" class="room"></td><td colspan="4" class="room">Lab. RPL 3</td><td colspan="2" class="room"></td><td colspan="2" class="room"></td>
+                        <!-- Jumat -->
+                        <td colspan="3" class="room">R. 24</td><td colspan="3" class="room">LABANA</td>
+                    </tr>
+
+                    <!-- BARIS DATA KELAS: X RPL B -->
+                    <tr>
+                        <td rowspan="3" class="bg-label">2</td>
+                        <td rowspan="3" class="bg-label"><b>X RPL B</b></td>
+                        <td class="bg-label">M.Diklat</td>
+                        <!-- Senin -->
+                        <td colspan="2" bgcolor="#f9cb9c" class="subject">PP</td>
+                        <td colspan="2" bgcolor="#b4a7d6" class="subject">SEJ</td>
+                        <td colspan="3" bgcolor="#c9daf8" class="subject">PABP</td>
+                        <td colspan="3" bgcolor="#a2c4c9" class="subject">PJOK</td>
+                        <!-- MBG -->
+                        <td rowspan="3" class="bg-break"></td>
+                        <!-- Selasa -->
+                        <td colspan="3" bgcolor="#f4cccc" class="subject">BIND</td>
+                        <td colspan="5" bgcolor="#b6d7a8" class="subject">INKA</td>
+                        <td colspan="4" bgcolor="#ea9999" class="subject">MAT</td>
+                        <!-- Istirahat -->
+                        <!-- Rabu -->
+                        <td colspan="5" bgcolor="#fff2cc" class="subject">DDK</td>
+                        <td colspan="5" bgcolor="#fff2cc" class="subject">IPAS</td>
+                        <!-- MBG -->
+                        <td rowspan="3" class="bg-break"></td>
+                        <!-- Kamis -->
+                        <td colspan="4" bgcolor="#d9ea73" class="subject">BING</td>
+                        <td colspan="4" bgcolor="#fff2cc" class="subject">DDK</td>
+                        <td colspan="4" bgcolor="#fff2cc" class="subject">DDK</td>
+                        <!-- Keagamaan -->
+                        <!-- Jumat -->
+                        <td colspan="2" bgcolor="#d0e0e3" class="subject">KKA</td>
+                        <td colspan="2" bgcolor="#f9cb9c" class="subject">SENI</td>
+                        <td colspan="2" bgcolor="#c9daf8" class="subject">MULOK</td>
+                    </tr>
+                    <tr>
+                        <!-- Baris Guru X RPL B -->
+                        <td class="bg-label">Guru</td>
+                        <!-- Senin -->
+                        <td colspan="2" class="teacher">JDA</td><td colspan="2" class="teacher">NOV</td><td colspan="3" class="teacher">IMA</td><td colspan="3" class="teacher">YIK</td>
+                        <!-- Selasa -->
+                        <td colspan="3" class="teacher">MIT</td><td colspan="5" class="teacher">TYA</td><td colspan="4" class="teacher">NKD</td>
+                        <!-- Rabu -->
+                        <td colspan="5" class="teacher">DAN</td><td colspan="5" class="teacher">ALI</td>
+                        <!-- Kamis -->
+                        <td colspan="4" class="teacher">SIN</td><td colspan="4" class="teacher">DIY/DAN</td><td colspan="4" class="teacher">MAH</td>
+                        <!-- Jumat -->
+                        <td colspan="2" class="teacher">ILA</td><td colspan="2" class="teacher">BCA</td><td colspan="2" class="teacher">DEV</td>
+                    </tr>
+                    <tr>
+                        <!-- Baris Ruang X RPL B -->
+                        <td class="bg-label">Ruang</td>
+                        <!-- Senin -->
+                        <td colspan="2" class="room"></td><td colspan="2" class="room">R. 25</td><td colspan="3" class="room"></td><td colspan="3" class="room">LABANA</td>
+                        <!-- Selasa -->
+                        <td colspan="3" class="room">R. 25</td><td colspan="5" class="room">Lab. Bing</td><td colspan="4" class="room">R. 25</td>
+                        <!-- Rabu -->
+                        <td colspan="5" class="room"></td><td colspan="5" class="room">Lab. RPL 1</td>
+                        <!-- Kamis -->
+                        <td colspan="4" class="room">R. 25</td><td colspan="4" class="room">Lab. RPL 1</td><td colspan="4" class="room"></td>
+                        <!-- Jumat -->
+                        <td colspan="2" class="room"></td><td colspan="2" class="room">R. 25</td><td colspan="2" class="room"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

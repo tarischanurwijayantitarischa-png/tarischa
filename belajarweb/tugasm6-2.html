@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulir Pendaftaran</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #e2e7ec;
+            --card: #ffffff;
+            --ink: #1f2a44;
+            --muted: #5d6b82;
+            --line: #cfd6e0;
+            --accent: #4b57d6;
+            --accent-dark: #3a45b8;
+            --accent-soft: #98a2ee;
+            --field: #f5f7fa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 32px 16px;
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: "Plus Jakarta Sans", Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        form {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        table.form-box {
+            width: 100%;
+            background-color: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            border-collapse: separate;
+            border-spacing: 0;
+            padding: 12px 28px 28px;
+            box-shadow: 0 12px 32px rgba(31, 42, 68, 0.12);
+        }
+
+        table.form-box td {
+            padding: 9px 4px;
+            vertical-align: middle;
+        }
+
+        table.form-box td:first-child {
+            width: 118px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        table.form-box td:nth-child(2) {
+            width: 14px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        h2 {
+            margin: 14px 0 6px;
+            text-align: center;
+            font-family: "Plus Jakarta Sans", Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        tr.judul td {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background-color: var(--field);
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+        }
+
+        input[type="password"] {
+            background-color: var(--accent-soft);
+            border-color: var(--accent-soft);
+        }
+
+        input[type="password"]:focus {
+            background-color: #aab3f3;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(75, 87, 214, 0.25);
+        }
+
+        input[name="hari"],
+        input[name="bulan"],
+        input[name="tahun"] {
+            width: 52px;
+            padding: 9px 6px;
+            text-align: center;
+        }
+
+        input[name="tahun"] {
+            width: 72px;
+        }
+
+        .petunjuk {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin: 0 4px 0 0;
+            accent-color: var(--accent);
+            vertical-align: -3px;
+            cursor: pointer;
+        }
+
+        label.opsi {
+            display: inline-block;
+            margin: 0 14px 6px 0;
+            cursor: pointer;
+        }
+
+        label.opsi:hover {
+            color: var(--accent-dark);
+        }
+
+        td.aksi {
+            padding-top: 22px;
+            text-align: center;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            min-width: 110px;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.15s, transform 0.1s;
+        }
+
+        input[type="submit"] {
+            border: 1px solid var(--accent);
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--accent-dark);
+        }
+
+        input[type="reset"] {
+            margin-left: 8px;
+            border: 1px solid var(--line);
+            background-color: #ffffff;
+            color: var(--ink);
+        }
+
+        input[type="reset"]:hover {
+            background-color: var(--field);
+        }
+
+        input[type="submit"]:active,
+        input[type="reset"]:active {
+            transform: translateY(1px);
+        }
+
+        input[type="submit"]:focus-visible,
+        input[type="reset"]:focus-visible {
+            outline: 3px solid rgba(75, 87, 214, 0.4);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 520px) {
+            table.form-box {
+                padding: 8px 16px 22px;
+            }
+
+            table.form-box,
+            table.form-box tbody,
+            table.form-box tr,
+            table.form-box td {
+                display: block;
+                width: 100%;
+            }
+
+            table.form-box td:first-child {
+                padding-bottom: 0;
+            }
+
+            table.form-box td:nth-child(2) {
+                display: none;
+            }
+
+            input[type="reset"] {
+                margin: 8px 0 0;
+            }
+
+            input[type="submit"],
+            input[type="reset"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" action="">
+<table class="form-box">
+    <tr class="judul">
+        <td colspan="3"><h2>Formulir Pendaftaran</h2></td>
+    </tr>
+    <tr>
+        <td><label for="nama">Nama</label></td>
+        <td>:</td>
+        <td><input type="text" id="nama" name="nama" size="30"></td>
+    </tr>
+    <tr>
+        <td><label for="password">Password</label></td>
+        <td>:</td>
+        <td><input type="password" id="password" name="password" size="30"></td>
+    </tr>
+    <tr>
+        <td><label for="hari">Tanggal Lahir</label></td>
+        <td>:</td>
+        <td>
+            <input type="text" id="hari" name="hari" size="2" maxlength="2" placeholder="hh">
+            /
+            <input type="text" name="bulan" size="2" maxlength="2" placeholder="bb">
+            /
+            <input type="text" name="tahun" size="4" maxlength="4" placeholder="tttt">
+            <span class="petunjuk">Format: hh/bb/tttt</span>
+        </td>
+    </tr>
+    <tr>
+        <td>Jenis Kelamin</td>
+        <td>:</td>
+        <td>
+            <label class="opsi"><input type="radio" name="kelamin" value="L"> Laki-Laki</label>
+            <label class="opsi"><input type="radio" name="kelamin" value="P"> Perempuan</label>
+        </td>
+    </tr>
+    <tr>
+        <td><label for="jurusan">Jurusan</label></td>
+        <td>:</td>
+        <td>
+            <select id="jurusan" name="jurusan">
+                <option value="rpl" selected>RPL</option>
+                <option value="tkj">TKJ</option>
+                <option value="mm">Multimedia</option>
+                <option value="tg">Teknik Grafika</option>
+                <option value="ph">Perhotelan</option>
+                <option value="animasi">Animasi</option>
+                <option value="meka">Mekatronika</option>
+                <option value="tl">Teknik Logistik</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">Hoby</td>
+        <td valign="top">:</td>
+        <td>
+            <label class="opsi"><input type="checkbox" name="hoby1" value="football"> Football</label>
+            <label class="opsi"><input type="checkbox" name="hoby2" value="traveling"> Traveling</label>
+            <label class="opsi"><input type="checkbox" name="hoby3" value="blogging"> Blogging</label>
+            <label class="opsi"><input type="checkbox" name="hoby4" value="music"> Music</label>
+            <label class="opsi"><input type="checkbox" name="hoby5" value="adventure"> Adventure</label>
+            <label class="opsi"><input type="checkbox" name="hoby6" value="lainnya"> Lainnya</label>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top"><label for="alamat">Alamat</label></td>
+        <td valign="top">:</td>
+        <td>
+            <textarea id="alamat" name="alamat" cols="30" rows="5"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="aksi">
+            <input type="submit" name="kirim" value="Kirim">
+            <input type="reset" name="reset" value="Reset">
+        </td>
+    </tr>
+</table>
+</form>
+
+</body>
+</html>

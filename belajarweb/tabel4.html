@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Web Grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container Utama menggunakan Grid */
+        .container {
+            display: grid;
+            width: 100%;
+            max-width: 1000px;
+            border: 1px solid #ccc;
+            grid-template-columns: 20% 60% 20%;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+                "header header header"
+                "sidebar-kiri konten-utama sidebar-kanan"
+                "footer footer footer";
+        }
+
+        /* Gaya Umum untuk Setiap Blok */
+        .box {
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border: 1px solid #777;
+        }
+
+        /* Header */
+        .header {
+            grid-area: header;
+            background-color: #f386d9; /* Pink */
+            min-height: 60px;
+        }
+
+        /* Sidebar Kiri */
+        .sidebar-kiri {
+            grid-area: sidebar-kiri;
+            background-color: #8af593; /* Hijau Muda */
+            font-style: italic;
+            min-height: 400px;
+        }
+
+        /* Konten Utama */
+        .konten-utama {
+            grid-area: konten-utama;
+            background-color: #dbdbdb; /* Abu-abu */
+            gap: 15px;
+        }
+
+        /* Variasi Warna Teks di Konten Utama */
+        .text-hijau { color: #2e7d32; }
+        .text-merah { color: #c62828; }
+        .text-kuning { color: #fbc02d; text-shadow: 1px 1px 1px #000; }
+        .text-cokelat { color: #6d4c41; }
+        .text-hitam { color: #000000; }
+        /* Sidebar Kanan */
+        .sidebar-kanan {
+            grid-area: sidebar-kanan;
+            background-color: #8af593; /* Hijau Muda */
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            grid-area: footer;
+            background-color: #f386d9; /* Pink */
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="box header">
+            Header (Banner/judul)
+        </div>
+
+        <!-- Sidebar Kiri -->
+        <div class="box sidebar-kiri">
+            Daftar Isi<br>sidebar kiri
+        </div>
+
+        <!-- Konten Utama -->
+        <div class="box konten-utama">
+            <h2>Konten Utama</h2>
+            <p class="text-hijau">Body atau contents(isi)</p>
+            <p class="text-merah">Body atau contents(isi)</p>
+            <p class="text-kuning">Body atau contents(isi)</p>
+            <p class="text-cokelat">Body atau contents(isi)</p>
+            <p class="text-hitam">Body atau contents(isi)</p>
+        </div>
+
+        <!-- Sidebar Kanan -->
+        <div class="box sidebar-kanan">
+            Daftar Isi<br>sidebar kanan
+        </div>
+
+        <!-- Footer -->
+        <div class="box footer">
+            Footer
+        </div>
+    </div>
+
+</body>
+</html>

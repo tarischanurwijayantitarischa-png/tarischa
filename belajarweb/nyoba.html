@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRAFTA - Custom Kerajinan DIY Rajut</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        skybrand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .view-frame { display: none; }
+        .view-frame.active { display: block; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(224, 242, 254, 0.8);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #f0f9ff 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg text-slate-800 min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- NAVBAR PERMANEN (DOMINASI BIRU MUDA & PUTIH) -->
+    <nav class="bg-white/90 backdrop-blur-md text-slate-800 shadow-sm border-b border-sky-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3.5 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchFrame('frame-2')">
+                <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center shadow-md shadow-sky-200">
+                    <i class="fa-solid fa-scroll text-xl"></i>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-sky-900">KRAFTA<span class="text-sky-500">.</span></span>
+            </div>
+            
+            <!-- Dynamic Navigation Links -->
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
+                <button onclick="switchFrame('frame-2')" class="hover:text-sky-600 transition">Homepage</button>
+                <button onclick="switchFrame('frame-3')" class="hover:text-sky-600 transition">Katalog</button>
+                <button onclick="switchFrame('frame-6')" class="hover:text-sky-600 transition">Custom Order</button>
+                <button onclick="switchFrame('frame-8')" class="hover:text-sky-600 transition">Tracking Status</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <button onclick="switchFrame('frame-7')" class="relative p-2.5 rounded-full bg-sky-50 text-sky-700 hover:bg-sky-100 transition">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-sky-600 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white">0</span>
+                </button>
+                <button onclick="switchFrame('frame-4')" class="bg-sky-50 text-sky-700 hover:bg-sky-100 px-4 py-2 rounded-xl text-xs font-bold transition">Masuk</button>
+                <button onclick="switchFrame('frame-5')" class="bg-sky-600 hover:bg-sky-700 text-white shadow-md shadow-sky-200 px-4 py-2 rounded-xl text-xs font-bold transition">Daftar</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTAINER 10 FRAME / TAMPILAN -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+        <!-- FRAME 1: TAMPILAN AWAL (LANDING / WELCOME) -->
+        <section id="frame-1" class="view-frame active py-12 md:py-20 text-center">
+            <div class="max-w-3xl mx-auto glass-card p-8 md:p-12 rounded-3xl shadow-xl shadow-sky-100/50 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-sky-200 rounded-full blur-3xl opacity-60"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-sky-300 rounded-full blur-3xl opacity-40"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-wand-magic-sparkles text-3xl"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Sentuhan Rajut Spesial Untukmu</h1>
+                    <p class="text-slate-600 text-base md:text-lg mb-8 leading-relaxed max-w-2xl mx-auto">Platform E-Commerce Spesialis Kerajinan DIY Rajutan Handmade dan Kit Rajut Berkualitas Tinggi. Dapatkan produk rajut impianmu atau kreasikan sendiri pesanan custom pilihanmu.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="switchFrame('frame-2')" class="bg-sky-600 hover:bg-sky-700 text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-sky-200 transition transform hover:-translate-y-0.5">Jelajahi Sekarang</button>
+                        <button onclick="switchFrame('frame-4')" class="bg-white hover:bg-sky-50 text-slate-700 border border-sky-200 px-8 py-3.5 rounded-2xl font-bold transition">Login / Register</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FRAME 2: HOMEPAGE -->
+        <section id="frame-2" class="view-frame space-y-10">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-sky-600 via-sky-500 to-sky-400 text-white p-8 md:p-12 rounded-3xl shadow-xl shadow-sky-200 flex flex-col md:flex-row justify-between items-center relative overflow-hidden">
+                <div class="space-y-5 max-w-xl z-10">
+                    <span class="bg-white/20 backdrop-blur-md text-white text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider border border-white/30">Spesialis DIY Rajut</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Wujudkan Desain Rajutan Idamanmu</h2>
+                    <p class="text-sky-50 text-sm md:text-base leading-relaxed">Pesan kustomisasi warna, benang, dan ukuran sesuai selera atau beli kit rajut DIY lengkap.</p>
+                    <button onclick="switchFrame('frame-6')" class="bg-white text-sky-700 hover:bg-sky-50 font-bold px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">Mulai Custom Rajutan</button>
+                </div>
+                <div class="mt-8 md:mt-0 z-10">
+                    <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=500&q=80" class="w-72 h-56 object-cover rounded-2xl shadow-2xl border-4 border-white/30" alt="Crochet Hero">
+                </div>
+            </div>
+
+            <!-- Category Grid -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 text-slate-800">Kategori Pilihan</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                    <div onclick="switchFrame('frame-3')" class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 text-center cursor-pointer hover:border-sky-400 hover:shadow-md transition group">
+                        <div class="w-14 h-14 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-sky-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-bag-shopping text-2xl"></i>
+                        </div>
+                        <p class="font-bold text-slate-800 text-sm">Tas & Pouch</p>
+                    </div>
+                    <div onclick="switchFrame('frame-3')" class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 text-center cursor-pointer hover:border-sky-400 hover:shadow-md transition group">
+                        <div class="w-14 h-14 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-sky-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-ghost text-2xl"></i>
+                        </div>
+                        <p class="font-bold text-slate-800 text-sm">Amigurumi/Boneka</p>
+                    </div>
+                    <div onclick="switchFrame('frame-3')" class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 text-center cursor-pointer hover:border-sky-400 hover:shadow-md transition group">
+                        <div class="w-14 h-14 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-sky-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-shirt text-2xl"></i>
+                        </div>
+                        <p class="font-bold text-slate-800 text-sm">Pakaian Rajut</p>
+                    </div>
+                    <div onclick="switchFrame('frame-3')" class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 text-center cursor-pointer hover:border-sky-400 hover:shadow-md transition group">
+                        <div class="w-14 h-14 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-sky-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-box text-2xl"></i>
+                        </div>
+                        <p class="font-bold text-slate-800 text-sm">DIY Kit & Bahan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FRAME 3: KATALOG PRODUK -->
+        <section id="frame-3" class="view-frame space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-sky-100 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Katalog Produk Rajutan</h2>
+                    <p class="text-slate-500 text-xs mt-1">Pilih produk rajutan handmade atau DIY Kit siap kirim</p>
+                </div>
+                <div class="relative">
+                    <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Cari produk..." class="pl-10 pr-4 py-2.5 bg-white border border-sky-200 rounded-xl text-sm w-full md:w-72 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Javascript Inserted Products -->
+            </div>
+        </section>
+
+        <!-- FRAME 4: LOGIN -->
+        <section id="frame-4" class="view-frame max-w-md mx-auto py-6">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-100 border border-sky-100">
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fa-solid fa-right-to-bracket text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">Masuk Ke Akun</h2>
+                    <p class="text-xs text-slate-500 mt-1">Silakan masuk untuk melacak dan memesan rajutan</p>
+                </div>
+                <form onsubmit="handleAuth(event, 'Login Berhasil!')" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Username / Email</label>
+                        <input type="text" required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Password</label>
+                        <input type="password" required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white">
+                    </div>
+                    <button type="submit" class="w-full bg-sky-600 text-white font-bold py-3 rounded-xl hover:bg-sky-700 shadow-md shadow-sky-200 transition">Masuk</button>
+                </form>
+                <p class="text-xs text-center text-slate-500 mt-6">Belum punya akun? <a href="#" onclick="switchFrame('frame-5')" class="text-sky-600 font-bold hover:underline">Daftar sekarang</a></p>
+            </div>
+        </section>
+
+        <!-- FRAME 5: REGISTER -->
+        <section id="frame-5" class="view-frame max-w-md mx-auto py-6">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-100 border border-sky-100">
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fa-solid fa-user-plus text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">Pendaftaran Akun Baru</h2>
+                    <p class="text-xs text-slate-500 mt-1">Bergabunglah dengan komunitas KRAFTA</p>
+                </div>
+                <form onsubmit="handleAuth(event, 'Registrasi Berhasil! Silakan Login.')" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nama Lengkap</label>
+                        <input type="text" required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email</label>
+                        <input type="email" required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Password</label>
+                        <input type="password" required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white">
+                    </div>
+                    <button type="submit" class="w-full bg-sky-600 text-white font-bold py-3 rounded-xl hover:bg-sky-700 shadow-md shadow-sky-200 transition">Daftar Akun</button>
+                </form>
+                <p class="text-xs text-center text-slate-500 mt-6">Sudah punya akun? <a href="#" onclick="switchFrame('frame-4')" class="text-sky-600 font-bold hover:underline">Masuk di sini</a></p>
+            </div>
+        </section>
+
+        <!-- FRAME 6: MENU PRODUK / CUSTOMIZER MODULE -->
+        <section id="frame-6" class="view-frame max-w-3xl mx-auto space-y-6">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-100 border border-sky-100">
+                <div class="border-b border-sky-100 pb-4 mb-6">
+                    <h2 class="text-2xl font-bold text-slate-900">Modul Kustomisasi Order (Custom Order)</h2>
+                    <p class="text-slate-500 text-xs mt-1">Rancang spesifikasi rajutan sesuai keinginanmu secara interaktif.</p>
+                </div>
+                
+                <form id="custom-form" onsubmit="addCustomToCart(event)" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Kategori Rajutan</label>
+                        <select id="custom-category" class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="Tas/Pouch Custom">Tas / Pouch Custom</option>
+                            <option value="Amigurumi Custom">Amigurumi / Boneka Rajut</option>
+                            <option value="Pakaian Rajut Custom">Pakaian / Cardigan Rajut</option>
+                            <option value="Aksesoris Custom">Aksesoris / Topi Rajut</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Jenis Benang</label>
+                            <select id="custom-yarn" onchange="calculateCustomPrice()" class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <option value="40000">Cotton (Standar)</option>
+                                <option value="60000">Milk Cotton (Lembut)</option>
+                                <option value="85000">Velvet/Bulu (Eksklusif)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Pilihan Ukuran</label>
+                            <select id="custom-size" onchange="calculateCustomPrice()" class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <option value="10000">Kecil (S)</option>
+                                <option value="25000">Sedang (M)</option>
+                                <option value="45000">Besar (L)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Warna Utama Benang</label>
+                        <div class="flex items-center space-x-3">
+                            <input type="color" id="custom-color" value="#38bdf8" class="h-12 w-20 rounded-xl border border-sky-100 p-1 cursor-pointer">
+                            <span class="text-xs text-slate-500">Pilih palet warna yang diinginkan pengrajin</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Unggah Catatan / Gambar Referensi</label>
+                        <input type="file" accept="image/*" class="w-full border border-sky-100 bg-slate-50 p-2.5 rounded-xl text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-sky-100 file:text-sky-700 hover:file:bg-sky-200">
+                    </div>
+
+                    <div class="p-5 bg-sky-50 rounded-2xl border border-sky-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div>
+                            <span class="text-xs text-sky-800 font-bold block uppercase tracking-wider">Kalkulasi Estimasi Harga:</span>
+                            <span id="custom-price-tag" class="text-3xl font-black text-sky-900">Rp 50.000</span>
+                        </div>
+                        <button type="submit" class="w-full sm:w-auto bg-sky-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-sky-700 shadow-md shadow-sky-200 transition">Tambah Custom Ke Keranjang</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- FRAME 7: MENU KERANJANG -->
+        <section id="frame-7" class="view-frame space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900">Keranjang Belanja</h2>
+            <div class="bg-white rounded-3xl shadow-xl shadow-sky-100 border border-sky-100 overflow-hidden p-6">
+                <div id="cart-items-container" class="divide-y divide-sky-50 space-y-4">
+                    <!-- Cart list rendered dynamically -->
+                    <p class="text-center text-slate-400 py-10">Keranjang belanja Anda masih kosong.</p>
+                </div>
+
+                <div class="mt-8 border-t border-sky-100 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div>
+                        <span class="text-slate-500 text-xs font-bold uppercase">Total Pembayaran:</span>
+                        <div id="cart-total-price" class="text-3xl font-black text-sky-900">Rp 0</div>
+                    </div>
+                    <button onclick="switchFrame('frame-9')" class="w-full sm:w-auto bg-sky-600 text-white font-bold px-8 py-3.5 rounded-xl hover:bg-sky-700 shadow-md shadow-sky-200 transition">Lanjut Ke Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FRAME 8: TRACKING STATUS PESANAN -->
+        <section id="frame-8" class="view-frame max-w-2xl mx-auto space-y-6">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-100 border border-sky-100">
+                <div class="border-b border-sky-100 pb-4 mb-6">
+                    <h2 class="text-2xl font-bold text-slate-900">Interactive Crafting Tracker</h2>
+                    <p class="text-xs text-slate-500 mt-1">Status pengerjaan rajutan handmade secara real-time.</p>
+                </div>
+
+                <div class="border-l-2 border-sky-200 pl-6 space-y-8 ml-3 relative">
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-0 bg-sky-600 text-white rounded-full h-6 w-6 flex items-center justify-center text-xs shadow-md shadow-sky-200">✓</span>
+                        <h4 class="font-bold text-slate-900 text-sm">1. Queued (Dalam Antrean)</h4>
+                        <p class="text-xs text-slate-500 mt-1">Pesanan dikonfirmasi dan material benang disiapkan.</p>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-0 bg-sky-400 text-white rounded-full h-6 w-6 flex items-center justify-center text-xs shadow-md animate-pulse">⏳</span>
+                        <h4 class="font-bold text-sky-700 text-sm">2. Crafting (Sedang Dirajut)</h4>
+                        <p class="text-xs text-slate-500 mt-1">Pengrajin sedang merajut sesuai variasi kustomisasi Anda.</p>
+                    </div>
+                    <div class="relative opacity-40">
+                        <span class="absolute -left-[31px] top-0 bg-slate-200 text-slate-600 rounded-full h-6 w-6 flex items-center justify-center text-xs">•</span>
+                        <h4 class="font-bold text-slate-700 text-sm">3. Quality Check (Pemeriksaan Kualitas)</h4>
+                        <p class="text-xs text-slate-500 mt-1">Verifikasi kualitas rajutan dan kerapian akhir.</p>
+                    </div>
+                    <div class="relative opacity-40">
+                        <span class="absolute -left-[31px] top-0 bg-slate-200 text-slate-600 rounded-full h-6 w-6 flex items-center justify-center text-xs">•</span>
+                        <h4 class="font-bold text-slate-700 text-sm">4. Shipping (Pengiriman)</h4>
+                        <p class="text-xs text-slate-500 mt-1">Pesanan diserahkan ke jasa kurir logistik.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FRAME 9: MENU CHECKOUT -->
+        <section id="frame-9" class="view-frame max-w-2xl mx-auto space-y-6">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-sky-100 border border-sky-100">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Pengiriman & Pembayaran</h2>
+                
+                <form onsubmit="processOrder(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Penerima</label>
+                        <input type="text" required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lengkap</label>
+                        <textarea required class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white h-24"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Metode Pembayaran</label>
+                        <select class="w-full p-3 bg-slate-50 border border-sky-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option>Transfer Bank (BCA / Mandiri)</option>
+                            <option>E-Wallet (Gopay / OVO / ShopeePay)</option>
+                            <option>Payment Gateway Midtrans</option>
+                        </select>
+                    </div>
+                    <div class="p-4 bg-sky-50/70 border border-sky-100 rounded-xl text-xs space-y-1 text-sky-900">
+                        <p class="font-bold">Catatan Business Rules:</p>
+                        <p>- Pesanan custom diproses setelah pembayaran/DP dikonfirmasi[cite: 1].</p>
+                    </div>
+                    <button type="submit" class="w-full bg-sky-600 text-white font-bold py-3.5 rounded-xl hover:bg-sky-700 shadow-md shadow-sky-200 transition">Bayar & Buat Pesanan</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FRAME 10: DASHBOARD ADMIN / OWNER -->
+        <section id="frame-10" class="view-frame space-y-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Dashboard Pengrajin / Owner</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Kelola stok benang dan pemantauan status antrean</p>
+                </div>
+                <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1.5 rounded-full font-bold">Role: Staf/Owner</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <p class="text-xs text-slate-500 font-bold uppercase">Total Pesanan Antrean</p>
+                    <p class="text-3xl font-black text-sky-600 mt-2">12 Order</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <p class="text-xs text-slate-500 font-bold uppercase">Stok Benang Milk Cotton</p>
+                    <p class="text-3xl font-black text-emerald-600 mt-2">45 Gulung</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <p class="text-xs text-slate-500 font-bold uppercase">Pendapatan Bulan Ini</p>
+                    <p class="text-3xl font-black text-sky-900 mt-2">Rp 2.450.000</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                <h3 class="font-bold text-sm text-slate-800 mb-4">Kelola Status Pesanan Antrean</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left">
+                        <thead class="bg-sky-50 text-sky-900 uppercase font-bold">
+                            <tr>
+                                <th class="p-3 rounded-l-xl">ID</th>
+                                <th class="p-3">Item Custom</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3 rounded-r-xl">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-sky-50">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-800">#KFT-102</td>
+                                <td class="p-3">Pouch Rajut Custom (Biru Muda)</td>
+                                <td class="p-3"><span class="bg-sky-100 text-sky-800 px-2.5 py-1 rounded-md font-semibold">Crafting</span></td>
+                                <td class="p-3"><button onclick="alert('Status Diperbarui!')" class="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-bold transition">Update Progress</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER NAVIGASI ADMIN SHORTCUT & COPYRIGHT -->
+    <footer class="bg-white border-t border-sky-100 text-slate-500 py-8 text-xs text-center space-y-3 mt-auto">
+        <p>© 2026 KRAFTA DIY Craft Rajutan - Suhail Muhammad & Tarischa Nur W (X RPL A)[cite: 1].</p>
+        <div class="space-x-4">
+            <button onclick="switchFrame('frame-1')" class="text-sky-600 hover:underline font-semibold">Tampilan Awal</button> | 
+            <button onclick="switchFrame('frame-10')" class="text-sky-600 hover:underline font-semibold">Dashboard Owner/Admin</button>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA KATALOG PRODUK (Harga Variasi Rp 40.000 - Rp 150.000)
+        const products = [
+            { id: 1, name: "Pouch Rajut Minimalis", price: 40000, category: "Tas", img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=400&q=80" },
+            { id: 2, name: "Amigurumi Boneka Kelinci", price: 55000, category: "Boneka", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=400&q=80" },
+            { id: 3, name: "DIY Kit Rajut Pemula", price: 75000, category: "DIY Kit", img: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=400&q=80" },
+            { id: 4, name: "Tas Selempang Bunga Rajut", price: 95000, category: "Tas", img: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=400&q=80" },
+            { id: 5, name: "Topi Kupluk Beanie Rajut", price: 65000, category: "Aksesoris", img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=400&q=80" },
+            { id: 6, name: "Cardigan Outer Rajut Hand-made", price: 150000, category: "Pakaian", img: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        let cart = [];
+
+        // FRAME SWITCHER CONTROLLER
+        function switchFrame(frameId) {
+            document.querySelectorAll('.view-frame').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            document.getElementById(frameId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // RENDER CATALOG
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = items.map(p => `
+                <div class="bg-white rounded-2xl shadow-sm border border-sky-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                    <img src="${p.img}" class="h-44 w-full object-cover" alt="${p.name}">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
+                        <div>
+                            <span class="text-[10px] font-bold text-sky-700 bg-sky-50 border border-sky-100 px-2.5 py-1 rounded-full uppercase tracking-wider">${p.category}</span>
+                            <h4 class="font-bold text-slate-800 text-sm mt-2">${p.name}</h4>
+                        </div>
+                        <div class="flex justify-between items-center pt-2 border-t border-sky-50">
+                            <span class="font-black text-sky-900 text-base">Rp ${p.price.toLocaleString('id-ID')}</span>
+                            <button onclick="addToCart('${p.name}', ${p.price})" class="bg-sky-600 text-white p-2.5 rounded-xl text-xs hover:bg-sky-700 shadow-md shadow-sky-100 transition"><i class="fa-solid fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // FILTER SEARCH
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            renderProducts(filtered);
+        }
+
+        // CUSTOM PRICE CALCULATOR AUTOMATION
+        function calculateCustomPrice() {
+            const yarnPrice = parseInt(document.getElementById('custom-yarn').value);
+            const sizePrice = parseInt(document.getElementById('custom-size').value);
+            const totalPrice = yarnPrice + sizePrice;
+            document.getElementById('custom-price-tag').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+            return totalPrice;
+        }
+
+        // ADD TO CART
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+            alert(`"${name}" berhasil ditambahkan ke keranjang!`);
+        }
+
+        function addCustomToCart(e) {
+            e.preventDefault();
+            const category = document.getElementById('custom-category').value;
+            const price = calculateCustomPrice();
+            addToCart(`${category} (Custom Order)`, price);
+            switchFrame('frame-7');
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items-container');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-400 py-10">Keranjang belanja Anda masih kosong.</p>`;
+                document.getElementById('cart-total-price').innerText = `Rp 0`;
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="flex justify-between items-center py-3">
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm">${item.name}</p>
+                            <p class="text-xs text-sky-700 font-bold mt-0.5">Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-rose-500 hover:text-rose-700 text-xs p-2"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cart-total-price').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function handleAuth(e, message) {
+            e.preventDefault();
+            alert(message);
+            switchFrame('frame-2');
+        }
+
+        function processOrder(e) {
+            e.preventDefault();
+            if(cart.length === 0) {
+                alert("Keranjang belanjaan Anda kosong!");
+                return;
+            }
+            alert("Pesanan berhasil dibuat! Silakan pantau status pengerjaan rajutan Anda di halaman Tracking.");
+            cart = [];
+            updateCartUI();
+            switchFrame('frame-8');
+        }
+
+        // INIT APPS
+        window.onload = () => {
+            renderProducts(products);
+            calculateCustomPrice();
+        };
+    </script>
+</body>
+</html>
